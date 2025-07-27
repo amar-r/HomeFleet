@@ -32,3 +32,5 @@ Thumbs.db
 
 # Media
 services/media/
+setup_docs/jellyfin_setup.md
+setup_docs/media_stack_setup.md
