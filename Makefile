@@ -14,7 +14,7 @@ help:
 	@echo "Service Groups:"
 	@echo "  core       - Essential infrastructure (homeassistant, frigate, zwave, portainer)"
 	@echo "  media      - Media server stack (jellyfin, *arr services)"
-	@echo "  monitoring - Observability (logging, dozzle, speedtest)"
+	@echo "  monitoring - Observability (dozzle, speedtest)"
 	@echo "  utilities  - Support services (heimdall, duplicati, watchtower)"
 	@echo "  all        - All services"
 	@echo ""
@@ -35,7 +35,7 @@ help:
 # Service definitions
 CORE_SERVICES = homeassistant frigate zwave portainer
 MEDIA_SERVICES = jellyfin sonarr radarr bazarr prowlarr sabnzbd jellyseerr
-MONITORING_SERVICES = logging dozzle speedtest frigate-exporter snmp-exporter
+MONITORING_SERVICES = dozzle speedtest
 UTILITIES_SERVICES = heimdall duplicati watchtower changedetection mosquitto bookstack
 
 # Core services
