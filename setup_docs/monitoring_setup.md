@@ -7,9 +7,6 @@ Monitoring services provide observability, logging, and performance tracking for
 ### Monitoring Stack
 - **Dozzle**: Container log viewer
 - **Speedtest Tracker**: Internet speed monitoring
-- **SNMP Exporter**: Network device monitoring
-- **Frigate Exporter**: Camera metrics
-- **Logging**: Centralized log aggregation
 
 ## Configuration
 
@@ -40,20 +37,6 @@ Internet speed monitoring and tracking.
 - Generate performance reports
 - Set up notifications
 
-### SNMP Exporter
-Network device monitoring via SNMP.
-- Monitor network switches
-- Track bandwidth usage
-- Monitor device health
-- Export metrics to Prometheus
-
-### Frigate Exporter
-Camera and NVR metrics.
-- Export Frigate metrics
-- Monitor camera status
-- Track motion detection events
-- Performance monitoring
-
 ## Integration
 
 - **Prometheus**: Metrics collection (future)
@@ -79,5 +62,3 @@ Planned additions:
 
 - [Dozzle](https://github.com/amir20/dozzle)
 - [Speedtest Tracker](https://github.com/alexjustesen/speedtest-tracker)
-- [SNMP Exporter](https://github.com/prometheus/snmp_exporter)
-- [Frigate Exporter](https://github.com/evilmarty/frigate-exporter)
