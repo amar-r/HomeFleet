@@ -1,0 +1,19 @@
+---
+services:
+  radarr: #movie search agent
+    image: ghcr.io/linuxserver/radarr
+    container_name: radarr
+    environment:
+      - PUID=$PUID
+      - PGID=$PGID
+      - TZ=$TZ
+      - UMASK=022
+    volumes:
+      - ${CONFIG}/radarr:/config
+      - ${MOVIES}:/media
+      - ${TMPMEDIA}/complete/:/downloads
+    ports:
+      - 7878:7878
+    labels:
+      - "com.centurylinklabs.watchtower.monitor-only=true"
+    restart: unless-stopped

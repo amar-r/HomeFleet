@@ -1,0 +1,17 @@
+services:
+  sabnzbd:
+    image: lscr.io/linuxserver/sabnzbd:latest
+    container_name: sabnzbd
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - ${CONFIG}/sabnzbd:/config
+      - ${TMPMEDIA}/complete:/downloads #optional
+      - ${TMPMEDIA}/incomplete:/incomplete-downloads #optional
+    ports:
+      - 8080:8080
+    restart: unless-stopped
+    # labels:
+    #   - "com.centurylinklabs.watchtower.monitor-only=true"
