@@ -1,0 +1,26 @@
+; <<>> DiG 9.18.1-1ubuntu1.3-Ubuntu <<>> +norecurse +noall +answer +authority
+; (2 servers found)
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 46971
+;; flags: qr aa; QUERY: 1, ANSWER: 0, AUTHORITY: 13, ADDITIONAL: 1
+
+;; QUESTION SECTION:
+;.                              IN      NS
+
+;; AUTHORITY SECTION:
+.                       518400  IN      NS      a.root-servers.net.
+.                       518400  IN      NS      b.root-servers.net.
+.                       518400  IN      NS      c.root-servers.net.
+.                       518400  IN      NS      d.root-servers.net.
+.                       518400  IN      NS      e.root-servers.net.
+.                       518400  IN      NS      f.root-servers.net.
+.                       518400  IN      NS      g.root-servers.net.
+.                       518400  IN      NS      h.root-servers.net.
+.                       518400  IN      NS      i.root-servers.net.
+.                       518400  IN      NS      j.root-servers.net.
+.                       518400  IN      NS      k.root-servers.net.
+.                       518400  IN      NS      l.root-servers.net.
+.                       518400  IN      NS      m.root-servers.net.
+
+;; ADDITIONAL SECTION:
+a.root-servers.net.     518400  IN      A       198.41.0.4

@@ -22,6 +22,7 @@ services/
     ├── duplicati
     ├── heimdall
     ├── mosquitto
+    ├── pihole-unbound
     └── watchtower
 ```
 
@@ -35,6 +36,8 @@ Use the watchtower container to ensure you're running the latest release for all
 
 Duplicati for backing up my configurations to online storage on a schedule. 
 > ⚠️ You don't want your configs to be in a Git repo.
+
+Pi-hole + Unbound for complete DNS control and ad-blocking. This setup provides recursive DNS resolution with privacy protection and comprehensive ad-blocking capabilities.
 
 ## Efficiency + Convenience
 
