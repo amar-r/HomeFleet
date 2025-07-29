@@ -19,6 +19,7 @@ services:
     volumes:
       - ./pihole/etc-pihole:/etc/pihole
       - ./pihole/etc-dnsmasq.d:/etc/dnsmasq.d
+      - ./restore-gravity.sh:/restore-gravity.sh:ro
       - ./adlists.txt:/etc/pihole/adlists.txt:ro
     networks:
       - dns_net
