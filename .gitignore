@@ -1,23 +1,50 @@
-# Environment files with secrets
+# Environment files
 .env
-.env.local
-.env.production
+.env.*
+!.env.example
 
-# Docker volumes and data
-data/
-volumes/
-configs/
+# Pi-hole sensitive data
+services/utilities/pihole-unbound/etc-pihole/
+services/utilities/pihole-unbound/pihole/
+services/utilities/pihole-unbound/unbound/
+services/utilities/pihole-unbound/docker-compose.yml
 
-# Logs
+# Docker data directories
+**/data/
+**/config/
+**/logs/
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Certificate files
+*.crt
+*.pem
+*.key
+*.p12
+
+# Log files
 *.log
 logs/
 
-# Temporary files
-*.tmp
-*.temp
+# Backup files
+*.backup
+*.bak
+*_backup/
 
-# OS files
+# Cache directories
+**/cache/
+**/tmp/
+
+# OS generated files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 
 # IDE files
@@ -25,12 +52,8 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+*~
 
-# Backup files
-*.bak
-*.backup
-
-# Media
-services/media/
-setup_docs/jellyfin_setup.md
-setup_docs/media_stack_setup.md
+# Temporary files
+*.tmp
+*.temp

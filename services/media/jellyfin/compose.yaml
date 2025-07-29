@@ -1,0 +1,33 @@
+---
+
+# Setup Hardware accelerration for Jellyfin
+# https://jellyfin.org/docs/general/administration/hardware-acceleration/amd
+# https://jellyfin.org/docs/general/installation/container/
+
+# other config
+# https://www.youtube.com/watch?v=HIExT8xq1BQ
+
+
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    environment:
+      - PUID=$PUID
+      - PGID=$PGID
+      - TZ=$TZ
+    group_add:
+      - "110"
+      - "44"
+    volumes:
+      - ${CONFIG}/jellyfin:/config
+      - ${TV}:/data/tvshows
+      - ${MOVIES}:/data/movies
+    ports:
+      - 8096:8096
+    devices:
+      - /dev/dri/renderD128:/dev/dri/renderD128
+    restart: unless-stopped
+    # labels:
+      # - "com.centurylinklabs.watchtower.monitor-only=true"
+      # - com.centurylinklabs.watchtower.enable="true"

@@ -36,7 +36,7 @@ help:
 CORE_SERVICES = homeassistant frigate zwave portainer
 MEDIA_SERVICES = jellyfin sonarr radarr bazarr prowlarr sabnzbd jellyseerr
 MONITORING_SERVICES = dozzle speedtest
-UTILITIES_SERVICES = heimdall duplicati watchtower changedetection mosquitto bookstack
+UTILITIES_SERVICES = heimdall duplicati watchtower changedetection mosquitto bookstack pihole-unbound
 
 # Core services
 up-core:

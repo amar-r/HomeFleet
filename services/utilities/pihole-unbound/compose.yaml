@@ -1,0 +1,62 @@
+version: "3.9"
+
+name: pihole-unbound
+
+networks:
+  dns_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.90.0/24
+
+services:
+  unbound:
+    container_name: unbound
+    image: mvance/unbound:latest
+    restart: unless-stopped
+    networks: [dns_net]
+    volumes:
+      - ./unbound/pi-hole.conf:/etc/unbound/unbound.conf.d/pi-hole.conf:ro
+    healthcheck:
+      # Keep the check simple and container-local
+      test: ["CMD-SHELL", "pgrep unbound >/dev/null || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    depends_on:
+      - unbound
+    restart: unless-stopped
+    networks: [dns_net]
+    # Expose DNS to the LAN and the Web UI
+    ports:
+      - "53:53/udp"      # Standard DNS port for pfSense
+      - "53:53/tcp"      # Standard DNS port for pfSense
+      - "8081:80/tcp"    # Web interface
+      # Uncomment if you want HTTPS UI on 8443
+      # - "8443:443/tcp"
+    env_file:
+      - ../../../.env
+    environment:
+      TZ: ${TZ}
+      # Pi-hole v6+ web API password
+      FTLCONF_webserver_api_password: ${PIHOLE_WEBPASSWORD}
+      # In docker, use 'all' so FTLDNS binds where it needs to inside the container
+      FTLCONF_dns_listeningMode: "all"
+      # Upstream Unbound on the docker network (service DNS name + port)
+      FTLCONF_dns_upstreams: "unbound#53"
+      # Interface binding for pfSense integration
+      FTLCONF_dns_interface: "all"
+    volumes:
+      - ./etc-pihole:/etc/pihole
+      # If you keep custom dnsmasq configs, also map this (optional)
+      # - ./etc-dnsmasq.d:/etc/dnsmasq.d
+      - ./adlists.txt:/etc/pihole/adlists.txt:ro
+    healthcheck:
+      test: ["CMD-SHELL", "dig +time=2 +tries=1 @127.0.0.1 pi.hole || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 5 

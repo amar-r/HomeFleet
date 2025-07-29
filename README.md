@@ -45,6 +45,17 @@ Combining a `Makefile` with a properly structured repo is the best move I've mad
 
 For example, if I want to restart all my core services. Instead of doing multiple `Docker compose down` calls I do a simple `Make restart core` and bam all my core containers restart!
 
+## Setup Instructions
+
+1. **Copy environment file**:
+   ```bash
+   cp env.example .env
+   ```
+
+2. **Update environment variables** in `.env` with your specific values
+
+3. **Start services** using the Makefile or individual docker-compose commands
+
 ## To-do List
 
 - [ ] Add dashboard for metrics
