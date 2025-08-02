@@ -15,7 +15,7 @@ help:
 	@echo "  core       - Essential infrastructure (homeassistant, frigate, zwave, portainer)"
 	@echo "  media      - Media server stack (jellyfin, *arr services)"
 	@echo "  monitoring - Observability (dozzle, speedtest)"
-	@echo "  utilities  - Support services (heimdall, duplicati, watchtower)"
+	@echo "  utilities  - Support services (heimdall, duplicati, watchtower, n8n)"
 	@echo "  all        - All services"
 	@echo ""
 	@echo "Utility Subsets:"
@@ -45,7 +45,7 @@ help:
 CORE_SERVICES = homeassistant frigate zwave portainer
 MEDIA_SERVICES = jellyfin sonarr radarr bazarr prowlarr sabnzbd jellyseerr
 MONITORING_SERVICES = dozzle speedtest
-UTILITIES_SERVICES = heimdall duplicati watchtower changedetection mosquitto bookstack pihole-unbound
+UTILITIES_SERVICES = heimdall duplicati watchtower changedetection mosquitto bookstack pihole-unbound n8n
 
 # Subset definitions for more granular control
 NETWORKING_SERVICES = pihole-unbound
@@ -196,7 +196,7 @@ logs-utilities:
 
 status-utilities:
 	@echo "Utilities services status:"
-	@docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}" --filter "name=heimdall" --filter "name=duplicati" --filter "name=watchtower" --filter "name=changedetection" --filter "name=mosquitto"
+	@docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}" --filter "name=heimdall" --filter "name=duplicati" --filter "name=watchtower" --filter "name=changedetection" --filter "name=mosquitto" --filter "name=n8n"
 
 # Networking services (Pi-hole + Unbound)
 up-networking:
