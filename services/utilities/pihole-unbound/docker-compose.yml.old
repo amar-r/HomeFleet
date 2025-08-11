@@ -1,12 +1,10 @@
----
+version: "3.9"
+
 name: pihole-unbound
 
 networks:
   dns_net:
     driver: bridge
-    ipam:
-      config:
-        - subnet: 192.168.90.0/24
 
 services:
   unbound:
@@ -16,10 +14,6 @@ services:
     networks: [dns_net]
     volumes:
       - ./unbound/pi-hole.conf:/etc/unbound/unbound.conf.d/pi-hole.conf:ro
-      # - ./forward-records.conf:/opt/unbound/etc/unbound/forward-records.conf:ro
-      # - ./unbound/forward-cloudflare.conf:/etc/unbound/unbound.conf.d/forward-cloudflare.conf:ro
-      - ./unbound/forward-records.conf:/opt/unbound/etc/unbound/forward-records.conf:ro
-      - ./unbound/unbound.conf:/opt/unbound/etc/unbound/unbound.conf:ro
     healthcheck:
       # Keep the check simple and container-local
       test: ["CMD-SHELL", "pgrep unbound >/dev/null || exit 1"]
@@ -34,11 +28,11 @@ services:
       - unbound
     restart: unless-stopped
     networks: [dns_net]
-    # Expose DNS to the LAN and the Web UI
+    # Expose DNS to the LAN and the Web UI on 8080
     ports:
-      - "53:53/udp"      # Standard DNS port for pfSense
-      - "53:53/tcp"      # Standard DNS port for pfSense
-      - "8081:80/tcp"    # Web interface
+      - "5353:53/udp"
+      - "5353:53/tcp"
+      - "8081:80/tcp"
       # Uncomment if you want HTTPS UI on 8443
       # - "8443:443/tcp"
     env_file:
@@ -51,13 +45,12 @@ services:
       FTLCONF_dns_listeningMode: "all"
       # Upstream Unbound on the docker network (service DNS name + port)
       FTLCONF_dns_upstreams: "unbound#53"
-      # Interface binding for pfSense integration
-      FTLCONF_dns_interface: "all"
     volumes:
       - ./etc-pihole:/etc/pihole
       # If you keep custom dnsmasq configs, also map this (optional)
       # - ./etc-dnsmasq.d:/etc/dnsmasq.d
       - ./adlists.txt:/etc/pihole/adlists.txt:ro
+      - ./restore-gravity.sh:/usr/local/bin/restore-gravity.sh:ro
     healthcheck:
       test: ["CMD-SHELL", "dig +time=2 +tries=1 @127.0.0.1 pi.hole || exit 1"]
       interval: 30s

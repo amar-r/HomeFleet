@@ -2,7 +2,7 @@
 # Manages services organized by function
 .PHONY: help up down restart logs status ps clean
 
-# Load environment variables
+# Load environment variables from secrets location
 include .env
 export $(shell sed 's/=.*//' .env)
 
@@ -413,4 +413,6 @@ clean:
 
 # Prevent make from treating service names as files
 %:
-	@: 
+	@:
+
+ 
