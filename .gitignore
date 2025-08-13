@@ -40,6 +40,10 @@ services/utilities/pihole-unbound/pihole/
 services/utilities/pihole-unbound/unbound/
 services/utilities/pihole-unbound/docker-compose.yml
 
+# Frigate sensitive data (camera passwords and configs)
+services/core/frigate/config.yml
+services/core/frigate/config.yml.old
+
 # Database files
 *.db
 *.sqlite
