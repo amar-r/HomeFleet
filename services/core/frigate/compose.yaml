@@ -42,10 +42,10 @@ services:
       #FRIGATE_RTSP_PASSWORD: "${FRIGATE_RTSP_PASSWORD}"
       LIBVA_DRIVER_NAME: "radeonsi"
       # Python performance optimizations
-      PYTHONUNBUFFERED: "1"
-      PYTHONDONTWRITEBYTECODE: "1"
+      # PYTHONUNBUFFERED: "1"
+      # PYTHONDONTWRITEBYTECODE: "1"
       # Additional performance optimizations
-      PYTHONOPTIMIZE: "1"
-      PYTHONHASHSEED: "0"
+      # PYTHONOPTIMIZE: "1"
+      # PYTHONHASHSEED: "0"
     #labels:
     #  - "com.centurylinklabs.watchtower.enable=false"
