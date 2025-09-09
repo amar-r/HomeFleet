@@ -14,4 +14,6 @@ services:
     devices:
       - /dev/ttyUSB0:/dev/ttyUSB0  # Z-Wave USB device
       - /dev/ttyUSB1:/dev/ttyUSB1 
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
     # network_mode: host
