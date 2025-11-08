@@ -44,7 +44,7 @@ services:
       # Uncomment if you want HTTPS UI on 8443
       # - "8443:443/tcp"
     env_file:
-      - ../../../.env
+      - ../.env
     environment:
       TZ: ${TZ}
       # Pi-hole v6+ web API password

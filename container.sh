@@ -1,4 +1,4 @@
-source .env
+# source "~/code/HomeFleet/.env"
 
 if [ -f "$2/compose.yaml" ]; then
     echo "File exsits"
@@ -19,7 +19,7 @@ case $1 in
         ;;
     "bounce")
         echo "bounce"
-        docker compose -f $2/compose.yaml --env-file .env down 
-        docker compose -f $2/compose.yaml --env-file .env up -d
+        docker compose -f $2/compose.yaml --env-file ~/code/HomeFleet/.env down 
+        docker compose -f $2/compose.yaml --env-file ~/code/HomeFleet/.env up -d
         ;;
 esac

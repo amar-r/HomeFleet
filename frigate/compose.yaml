@@ -4,7 +4,7 @@ services:
     container_name: frigate
     privileged: true # this may not be necessary for all setups
     restart: unless-stopped
-    image: ghcr.io/blakeblackshear/frigate:0.15.1
+    image: ghcr.io/blakeblackshear/frigate:0.16.2
     # image: ghcr.io/blakeblackshear/frigate:stable
     labels:
       - "com.centurylinklabs.watchtower.enable=false"
@@ -41,8 +41,8 @@ services:
     environment:
       #FRIGATE_RTSP_PASSWORD: "${FRIGATE_RTSP_PASSWORD}"
       LIBVA_DRIVER_NAME: "radeonsi"
-    labels:
-     - "com.centurylinklabs.watchtower.monitor-only=true"
+    #labels:
+    # - "com.centurylinklabs.watchtower.monitor-only=true"
 
   mosquitto:
     image: eclipse-mosquitto

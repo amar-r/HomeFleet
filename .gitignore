@@ -60,3 +60,5 @@ services/core/frigate/config.yml.old
 **/tmp/
 
 logrotate
+pihole.toml*
+pihole-unbound/etc-pihole/config_backups/*
