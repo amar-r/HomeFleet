@@ -28,6 +28,6 @@ services:
     devices:
       - /dev/dri/renderD128:/dev/dri/renderD128
     restart: unless-stopped
-    # labels:
-      # - "com.centurylinklabs.watchtower.monitor-only=true"
+    labels:
+      - "com.centurylinklabs.watchtower.monitor-only=true"
       # - com.centurylinklabs.watchtower.enable="true"

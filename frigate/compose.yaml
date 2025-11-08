@@ -41,11 +41,20 @@ services:
     environment:
       #FRIGATE_RTSP_PASSWORD: "${FRIGATE_RTSP_PASSWORD}"
       LIBVA_DRIVER_NAME: "radeonsi"
-      # Python performance optimizations
-      # PYTHONUNBUFFERED: "1"
-      # PYTHONDONTWRITEBYTECODE: "1"
-      # Additional performance optimizations
-      # PYTHONOPTIMIZE: "1"
-      # PYTHONHASHSEED: "0"
-    #labels:
-    #  - "com.centurylinklabs.watchtower.enable=false"
+    labels:
+     - "com.centurylinklabs.watchtower.monitor-only=true"
+
+  mosquitto:
+    image: eclipse-mosquitto
+    container_name: mosquitto
+    # network_mode: host
+    restart: unless-stopped
+    volumes:
+      - ${CONFIG}/mosquitto/config:/mosquitto/config
+      - ${CONFIG}/mosquitto/data:/mosquitto/data
+      - ${CONFIG}/mosquitto/log:/mosquitto/log
+      # - ${CONFIG}/mosquitto:/config
+    ports:
+      - 1883:1883
+    # labels:
+    #   - "com.centurylinklabs.watchtower.monitor-only=true"

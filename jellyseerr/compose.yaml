@@ -11,5 +11,5 @@ services:
     volumes:
       - ${CONFIG}/jellyseerr:/app/config
     restart: unless-stopped
-    # labels:
-    #   - "com.centurylinklabs.watchtower.monitor-only=true"
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"

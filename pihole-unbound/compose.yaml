@@ -26,6 +26,8 @@ services:
       interval: 30s
       timeout: 5s
       retries: 5
+    labels:
+     - "com.centurylinklabs.watchtower.monitor-only=true"
 
   pihole:
     container_name: pihole
@@ -63,3 +65,5 @@ services:
       interval: 30s
       timeout: 5s
       retries: 5 
+    labels:
+     - "com.centurylinklabs.watchtower.monitor-only=true"

@@ -20,3 +20,31 @@ services:
     dns: 10.27.27.13
     environment:
       PORT: 8123
+
+  zwave-js-ui:
+    container_name: zwave-js-ui
+    image: zwavejs/zwave-js-ui:latest
+    restart: always
+    tty: true
+    stop_signal: SIGINT
+    environment:
+      - SESSION_SECRET=${ZWAVE_SESSION_SECRET}
+      # Uncomment if you want logs time and dates to match your timezone instead of UTC
+      # Available at https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+      - TZ=${TZ}
+    # networks:
+    #   - zwave
+    devices:
+      # Do not use /dev/ttyUSBX serial devices, as those mappings can change over time.
+      # Instead, use the /dev/serial/by-id/X serial device for your Z-Wave stick.
+      # - '/dev/serial/by-id/insert_stick_reference_here:/dev/zwave'
+      - /dev/serial/by-id/usb-Silicon_Labs_HubZ_Smart_Home_Controller_316004FD-if00-port0:/dev/zwave
+      # - /dev/serial/by-id/usb-Silicon_Labs_HubZ_Smart_Home_Controller_316004FD-if1:/dev/zwave1
+    volumes:
+      - ${CONFIG}/zwave-config:/usr/src/app/store
+    ports:
+      - '8091:8091' # port for web interface
+      - '3000:3000' # port for Z-Wave JS websocket server
+    volumes:
+      zwave-config:
+        name: zwave-config
