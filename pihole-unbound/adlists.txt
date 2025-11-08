@@ -1,0 +1,9 @@
+# Curated, effective, not overly aggressive
+https://dbl.oisd.nl/
+https://v.firebog.net/hosts/AdguardDNS.txt
+https://o0.pages.dev/Lite/adblock.txt
+https://phishing.army/download/phishing_army_blocklist_extended.txt
+# Optional vendor telemetry lists (can be aggressive if you add them):
+# https://raw.githubusercontent.com/lightswitch05/hosts/master/windows/all.txt
+# https://raw.githubusercontent.com/lightswitch05/hosts/master/apple/all.txt
+# https://raw.githubusercontent.com/lightswitch05/hosts/master/amazon/all.txt 

@@ -1,0 +1,22 @@
+---
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: "ghcr.io/home-assistant/home-assistant:stable"
+    volumes:
+      - ${CONFIG}/homeassistant:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
+    restart: unless-stopped
+    # ports:
+    #   - 8123:8123
+    privileged: true
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0  # Z-Wave USB device
+      - /dev/ttyUSB1:/dev/ttyUSB1 
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+    network_mode: host
+    dns: 10.27.27.13
+    environment:
+      PORT: 8123

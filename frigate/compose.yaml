@@ -1,0 +1,51 @@
+---
+services:
+  frigate:
+    container_name: frigate
+    privileged: true # this may not be necessary for all setups
+    restart: unless-stopped
+    image: ghcr.io/blakeblackshear/frigate:0.15.1
+    # image: ghcr.io/blakeblackshear/frigate:stable
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false"
+    shm_size: "512mb" # increased from 256mb for better performance
+    deploy:
+      resources:
+        limits:
+          memory: 8G
+          cpus: '4.0'
+        reservations:
+          memory: 4G
+          cpus: '2.0'
+    devices:
+      - /dev/bus/usb:/dev/bus/usb # passes the USB Coral, needs to be modified for other versions
+      - /dev/apex_0:/dev/apex_0 # passes a PCIe Coral, follow driver instructions here https://coral.ai/docs/m2/get-started/#2a-on-linux
+      # - /dev/dri/renderD128 # for AMD hwaccel, needs to be updated for your hardware
+      - /dev/dri:/dev/dri
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      # - ${CONFIG}/frigate/config.yml:/config/config.yml
+      - ${CONFIG}/frigate/:/config/
+      # - /media/frigate/:/media/frigate
+      - ${FRIGATE_MEDIA}:/media/frigate
+      - type: tmpfs # Optional: 2GB of memory, reduces SSD/SD Card wear
+        target: /tmp/cache
+        tmpfs:
+          size: 2000000000
+    ports:
+      - "5000:5000"
+      - "8554:8554" # RTSP feeds
+      - "1935:1935"
+      - "8555:8555/tcp" # WebRTC over tcp
+      - "8555:8555/udp" # WebRTC over udp
+    environment:
+      #FRIGATE_RTSP_PASSWORD: "${FRIGATE_RTSP_PASSWORD}"
+      LIBVA_DRIVER_NAME: "radeonsi"
+      # Python performance optimizations
+      # PYTHONUNBUFFERED: "1"
+      # PYTHONDONTWRITEBYTECODE: "1"
+      # Additional performance optimizations
+      # PYTHONOPTIMIZE: "1"
+      # PYTHONHASHSEED: "0"
+    #labels:
+    #  - "com.centurylinklabs.watchtower.enable=false"

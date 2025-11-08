@@ -58,3 +58,5 @@ services/core/frigate/config.yml.old
 # Cache directories
 **/cache/
 **/tmp/
+
+logrotate
