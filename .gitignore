@@ -61,4 +61,7 @@ services/core/frigate/config.yml.old
 
 logrotate
 pihole.toml*
-pihole-unbound/etc-pihole/config_backups/*
+**/config_backups/*
+gravity.db*
+**listsCache/*
+pihole-unbount/etc-pihole/*
